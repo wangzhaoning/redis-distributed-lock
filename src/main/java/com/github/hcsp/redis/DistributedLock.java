@@ -54,16 +54,16 @@ public class DistributedLock {
             if (spendTime >= timeout) {
                 throw new RuntimeException("acquire lock timeout");
             }
-            jedis.subscribe(subscriber,name);
+            jedis.subscribe(subscriber, name);
         }
     }
 
     public void unlock(String uuid, Jedis jedis) throws InterruptedException {
-            String currentLock = jedis.get(name);
+        String currentLock = jedis.get(name);
 
-            if (uuid.equals(currentLock)) {
-                jedis.del(name);
-                jedis.publish(name, "ok");
+        if (uuid.equals(currentLock)) {
+            jedis.del(name);
+            jedis.publish(name, "ok");
         }
     }
 }
