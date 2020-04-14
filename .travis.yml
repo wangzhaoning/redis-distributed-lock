@@ -12,7 +12,7 @@ jobs:
       script: ./.circleci/verifyWhitelist.sh
     - stage: Start Redis
       install: skip
-      script: docker run -p 6379:6379 redis
+      script: docker run -d -p 6379:6379 redis
     - stage: Wait for Redis
       install: skip
       script: sleep 5
